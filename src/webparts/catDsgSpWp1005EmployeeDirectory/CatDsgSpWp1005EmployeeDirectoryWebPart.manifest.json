@@ -27,7 +27,8 @@
       "zh-cn":"用户可以使用搜索框来搜索员工" },
     "officeFabricIconFontName": "ProfileSearch",
     "properties": {
-      "description": "Displays a search box that allows users to search the employee directory."
+      "description": "Displays a search box that allows users to search the employee directory.",
+      "searchResultPageRelativeUrl":"searchcenter/pages/peopleresults.aspx"
     }
   }]
 }
