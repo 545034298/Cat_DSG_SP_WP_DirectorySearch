@@ -76,7 +76,7 @@
       .catDsgSpWp1005EmployeeDirectorySearchInput {
         width: 100%;
         border: 1px solid;
-        border-color: "[theme:themePrimary, default: #d9230f]";
+        border-color: "[theme:themePrimary, default: #d9230f]" !important;
         height: 30px;
         float: left;
         padding: 0 0 0 40px;
@@ -87,13 +87,22 @@
         height: 32px;
         float: left;
         background:transparent;
-        color: "[theme:themeDarker, default: white]";
-        text-align: center;
+        color: "[theme:themeDarker, default: #d9230f]" !important;
+        text-align: left;
         line-height: 32px;
         cursor: pointer;
         border: 0px solid;
         background-color: transparent;
         margin-top: -32px;
+    }
+    .catDsgSpWp1005EmployeeDirectorySearchIcon {
+        display: inline-flex;
+        align-self: center;
+        position: relative;
+        height: 1.1em;
+        width: 1.1em;
+        color:"[theme:themePrimary, default: #d9230f]" !important;
+        fill: "[theme:themePrimary, default: #d9230f]" !important;
     }
   }
 }

@@ -28,7 +28,8 @@
     "officeFabricIconFontName": "ProfileSearch",
     "properties": {
       "description": "Displays a search box that allows users to search the employee directory.",
-      "searchResultPageRelativeUrl":"searchcenter/pages/peopleresults.aspx"
+      "searchResultPageRelativeUrl":"",
+      "queryTextParameterName":"k"
     }
   }]
 }
