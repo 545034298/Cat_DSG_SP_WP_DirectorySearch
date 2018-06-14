@@ -1,0 +1,11 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "isCreatingSolution": true,
+    "environment": "spo",
+    "version": "1.5.0",
+    "libraryName": "cat-dsg-sp-wp-1005-employee-directory",
+    "libraryId": "74534f59-990f-4bd1-822c-7841f0fb0a77",
+    "packageManager": "npm",
+    "componentType": "webpart"
+  }
+}

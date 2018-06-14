@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "cat-dsg-sp-wp-1005-employee-directory-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/catDsgSpWp1005EmployeeDirectory/CatDsgSpWp1005EmployeeDirectoryWebPart.js",
+          "manifest": "./src/webparts/catDsgSpWp1005EmployeeDirectory/CatDsgSpWp1005EmployeeDirectoryWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "CatDsgSpWp1005EmployeeDirectoryWebPartStrings": "lib/webparts/catDsgSpWp1005EmployeeDirectory/loc/{locale}.js"
+  }
+}

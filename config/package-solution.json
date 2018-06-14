@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "cat-dsg-sp-wp-1005-employee-directory-client-side-solution",
+    "id": "74534f59-990f-4bd1-822c-7841f0fb0a77",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true
+  },
+  "paths": {
+    "zippedPackage": "solution/cat-dsg-sp-wp-1005-employee-directory.sppkg"
+  }
+}

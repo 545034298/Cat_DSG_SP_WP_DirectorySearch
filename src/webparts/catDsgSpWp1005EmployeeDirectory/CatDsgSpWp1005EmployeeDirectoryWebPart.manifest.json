@@ -1,0 +1,33 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "c06c1a91-8c24-402d-afd9-503a36a35a6f",
+  "alias": "CatDsgSpWp1005EmployeeDirectoryWebPart",
+  "componentType": "WebPart",
+
+  // The "*" signifies that the version should be taken from the package.json
+  "version": "*",
+  "manifestVersion": 2,
+
+  // If true, the component can only be installed on sites where Custom Script is allowed.
+  // Components that allow authors to embed arbitrary script code should set this to true.
+  // https://support.office.com/en-us/article/Turn-scripting-capabilities-on-or-off-1f2c515f-5d7e-448a-9fd7-835da935584f
+  "requiresCustomScript": false,
+
+  "preconfiguredEntries": [{
+    "groupId": "59a98142-add4-4747-8d48-029b0b0ab8d9",
+    "group": {
+      "default": "Catapult Systems"
+    },
+    "title": {
+       "default": "Employee Directory",
+       "zh-cn":"员工查询" 
+      },
+    "description": { 
+      "default": "Displays a search box that allows users to search the employee directory.",
+      "zh-cn":"用户可以使用搜索框来搜索员工" },
+    "officeFabricIconFontName": "ProfileSearch",
+    "properties": {
+      "description": "Displays a search box that allows users to search the employee directory."
+    }
+  }]
+}
