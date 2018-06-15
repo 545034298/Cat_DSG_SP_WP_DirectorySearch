@@ -7,12 +7,12 @@ import {
 
 import styles from './CatDsgSpWp1005EmployeeDirectoryWebPart.module.scss';
 import * as strings from 'CatDsgSpWp1005EmployeeDirectoryWebPartStrings';
-import JQueryLoader from './JQueryLoader';
+import CatDsgWp1005EmployeejqueryLoader from './CatDsgWp1005EmployeejqueryLoader';
 import Utils from './CatDsgWp1005EmployeeDirectoryWebPartUtils';
 
 export interface ICatDsgSpWp1005EmployeeDirectoryWebPartProps {
   description: string;
-  searchResultPageRelativeUrl: string;
+  searchResultPageAbsoluteUrl: string;
   queryTextParameterName: string;
 }
 
@@ -36,29 +36,33 @@ export default class CatDsgSpWp1005EmployeeDirectoryWebPart extends BaseClientSi
         </div>
       </div>`;
     let siteAbsoluteUrl = this.context.pageContext.site.absoluteUrl;
-    let tenantAbsoluteUrl=Utils.getTenantUrl(this.context.pageContext.site.absoluteUrl,this.context.pageContext.site.serverRelativeUrl);
-    let resultPageRelativeUrl = this.properties.searchResultPageRelativeUrl?this.properties.searchResultPageRelativeUrl:'';
-    let resultPageAbsoluteURl='';
-    if(this.properties.searchResultPageRelativeUrl!='') {
-      if (resultPageRelativeUrl.indexOf('/') != 0) {
-        resultPageRelativeUrl = '/' + resultPageRelativeUrl;
-      }
-      resultPageAbsoluteURl=siteAbsoluteUrl+resultPageRelativeUrl;
-    }
-    else {
-      resultPageAbsoluteURl=tenantAbsoluteUrl+'/search/Pages/peopleresults.aspx';
-    }
+    let tenantAbsoluteUrl = Utils.getTenantUrl(this.context.pageContext.site.absoluteUrl, this.context.pageContext.site.serverRelativeUrl);
+    let resultPageUrl = this.properties.searchResultPageAbsoluteUrl ? this.properties.searchResultPageAbsoluteUrl.trim() : '';
     let queryTextParameterName = this.properties.queryTextParameterName;
-    JQueryLoader.LoadDependencies("https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js", []).then((object) => {
-      $("." + styles.catDsgSpWp1005EmployeeDirectorySearchBox + ">" + "."+styles.catDsgSpWp1005EmployeeDirectorySearchButton).click(function (event) {
+    if (resultPageUrl === '') {
+      resultPageUrl = tenantAbsoluteUrl + '/_layouts/15/sharepoint.aspx?v=search%2Fpeople';
+      queryTextParameterName = 'q';
+    }
+    CatDsgWp1005EmployeejqueryLoader.LoadDependencies("https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js", []).then((object) => {
+      $("." + styles.catDsgSpWp1005EmployeeDirectorySearchBox + ">" + "." + styles.catDsgSpWp1005EmployeeDirectorySearchButton).click(function (event) {
         var searchValue = $(this).parent().find("input").val();
-        window.location.href = resultPageAbsoluteURl + '?' + queryTextParameterName + '=' + searchValue;
+        if (resultPageUrl.indexOf('=') > 0) {
+          window.location.href = resultPageUrl + '&' + queryTextParameterName + '=' + searchValue;
+        }
+        else {
+          window.location.href = resultPageUrl + '?' + queryTextParameterName + '=' + searchValue;
+        }
         event.preventDefault();
       });
       $("." + styles.catDsgSpWp1005EmployeeDirectorySearchBox + ">input").keydown(function (event) {
         if (event.keyCode == 13) {
           var searchValue = $(this).val();
-          window.location.href = resultPageAbsoluteURl + '?' + queryTextParameterName + '=' + searchValue;
+          if (resultPageUrl.indexOf('=') > 0) {
+            window.location.href = resultPageUrl + '&' + queryTextParameterName + '=' + searchValue;
+          }
+          else {
+            window.location.href = resultPageUrl + '?' + queryTextParameterName + '=' + searchValue;
+          }
           event.preventDefault();
         }
       });
@@ -71,6 +75,20 @@ export default class CatDsgSpWp1005EmployeeDirectoryWebPart extends BaseClientSi
     }
     return "";
   }
+  private validatesearchResultPageAbsoluteUrlProperty(value: string): string {
+    if (value === null || (value != null && value.trim().length === 0)) {
+      return "";
+    } else {
+      var urlRegExp = new RegExp(/(https|http):\/\/\w+\.((\w+\.)?)[^/\s]+((\/[\w\.\-%#]+){0,})((\?([\w\-]+\=[^&]+((&[\w\-%]+=[^&]+){0,})))?)\s{0,}/m);
+      var result = value.trim().replace(urlRegExp,'');
+      if(result=='') {
+        return "";
+      } else {
+        return "The value shoud be absolute url type start with http/https";
+      }
+    }
+  }
+
 
   protected get dataVersion(): Version {
     return Version.parse('1.0');
@@ -94,8 +112,9 @@ export default class CatDsgSpWp1005EmployeeDirectoryWebPart extends BaseClientSi
                 PropertyPaneTextField('description', {
                   label: strings.DescriptionFieldLabel
                 }),
-                PropertyPaneTextField('searchResultPageRelativeUrl', {
-                  label: strings.CatDsgSpWp1005EmployeeDirectoryFieldLabelSearchResultPageRelativeUrl,
+                PropertyPaneTextField('searchResultPageAbsoluteUrl', {
+                  label: strings.CatDsgSpWp1005EmployeeDirectoryFieldLabelSearchResultPageAbsoluteUrl,
+                  onGetErrorMessage: this.validatesearchResultPageAbsoluteUrlProperty.bind(this)
                 }),
                 PropertyPaneTextField('queryTextParameterName', {
                   label: strings.CatDsgSpWp1005EmployeeDirectoryFieldLabelQueryTextParameterName,

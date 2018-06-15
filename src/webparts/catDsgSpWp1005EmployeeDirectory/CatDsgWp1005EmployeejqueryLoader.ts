@@ -4,7 +4,7 @@ declare var window: any;
 declare var jQuery: JQueryStatic;
 declare var $: JQueryStatic;
 
-namespace JQueryLoader {
+namespace CatDsgWp1005EmployeejqueryLoader {
     export function LoadDependencies(JqueryScript: string, dependencies: string[]): Promise<object> {
         if ('undefined' != typeof window.jQuery) {
             jQuery = window.jQuery as JQueryStatic as JQueryStatic;
@@ -24,4 +24,4 @@ namespace JQueryLoader {
         return Promise.all(scripts);
     }
 }
-export default JQueryLoader;
+export default CatDsgWp1005EmployeejqueryLoader;
