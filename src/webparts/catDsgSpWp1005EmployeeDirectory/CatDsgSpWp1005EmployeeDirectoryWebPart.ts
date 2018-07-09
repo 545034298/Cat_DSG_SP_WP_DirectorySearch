@@ -7,7 +7,7 @@ import {
 
 import styles from './CatDsgSpWp1005EmployeeDirectoryWebPart.module.scss';
 import * as strings from 'CatDsgSpWp1005EmployeeDirectoryWebPartStrings';
-import CatDsgWp1005EmployeejqueryLoader from './CatDsgWp1005EmployeejqueryLoader';
+import CatDsgWp1005ScriptLoader from './CatDsgWp1005ScriptLoader';
 import Utils from './CatDsgWp1005EmployeeDirectoryWebPartUtils';
 
 export interface ICatDsgSpWp1005EmployeeDirectoryWebPartProps {
@@ -43,7 +43,12 @@ export default class CatDsgSpWp1005EmployeeDirectoryWebPart extends BaseClientSi
       resultPageUrl = tenantAbsoluteUrl + '/_layouts/15/sharepoint.aspx?v=search%2Fpeople';
       queryTextParameterName = 'q';
     }
-    CatDsgWp1005EmployeejqueryLoader.LoadDependencies("https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js", []).then((object) => {
+    let script: CatDsgWp1005ScriptLoader.IScript = {
+      Url: "https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js",
+      GlobalExportsName: "jQuery",
+      WindowPropertiesChain: "jQuery"
+    };
+    CatDsgWp1005ScriptLoader.LoadScript(script, []).then((object) => {
       $("." + styles.catDsgSpWp1005EmployeeDirectorySearchBox + ">" + "." + styles.catDsgSpWp1005EmployeeDirectorySearchButton).click(function (event) {
         var searchValue = $(this).parent().find("input").val();
         if (resultPageUrl.indexOf('=') > 0) {

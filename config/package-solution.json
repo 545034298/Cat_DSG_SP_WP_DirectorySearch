@@ -3,7 +3,7 @@
   "solution": {
     "name": "Catapult Systems - Employee Directory",
     "id": "74534f59-990f-4bd1-822c-7841f0fb0a77",
-    "version": "1.0.0.6",
+    "version": "1.0.0.7",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true
   },
